@@ -4,10 +4,15 @@ let ul = document.querySelector('ul');
 let delBlock = document.querySelector('.delBlock');
 let editBlock = document.querySelector('.editBlock');
 let doneUl = document.querySelector('.doneUl');
+let filter = document.querySelector('#filter');
+
+
 
 inputTask.onclick = function () {
     inputTask.value = '';
 };
+
+
 buttonAdd.onclick = function () {
     if(inputTask.value !== ''){
         createElement();
@@ -22,6 +27,7 @@ function createElement() {
     let butDone = document.createElement('button');
     let butEdit = document.createElement('button');
     let butDel = document.createElement('button');
+
 
     li.className = 'li';
     task.className = 'task';
@@ -41,7 +47,7 @@ function createElement() {
     butEdit.innerHTML = '<i class="fas fa-pen"></i>';
     butDel.innerHTML = '<i class="fas fa-trash"></i>';
 
-    task.innerHTML = inputTask.value;
+    task.textContent = inputTask.value;
 
     delItem (li,butDel);
     editItem (butEdit,task);
@@ -51,50 +57,68 @@ function createElement() {
 
 }
 
- function delItem(li,butDel) {
+function delItem(li,butDel) {
     butDel.addEventListener('click', function () {
-     let yes = document.querySelector('.yes');
-     let no = document.querySelector('.no');
-     delBlock.style.display = 'block';
-     yes.onclick = function(){
-         li.remove();
-         delBlock.style.display = 'none';
-     };
-     no.onclick = function(){
-             delBlock.style.display = 'none';
-         };
+        let yes = document.querySelector('.yes');
+        let no = document.querySelector('.no');
+        delBlock.style.display = 'block';
+        yes.onclick = function(){
+            li.remove();
+            delBlock.style.display = 'none';
+        };
+        no.onclick = function(){
+            delBlock.style.display = 'none';
+        };
     })
- }
+}
 
- function editItem(butEdit,task) {
-     let save = document.querySelector('.save');
-     let cancel = document.querySelector('.cancel');
-     let inputEditTask = document.querySelector('#story');
-     butEdit.addEventListener('click', function () {
-         editBlock.style.display = 'block';
-         inputEditTask.value = this.parentElement.parentElement.innerText;
-         save.onclick = function(){
-             task.innerHTML = inputEditTask.value;
-             editBlock.style.display = 'none';
-         };
-         cancel.onclick = function(){
-             editBlock.style.display = 'none';
-         };
-     })
- }
+function editItem(butEdit,task) {
+    let save = document.querySelector('.save');
+    let cancel = document.querySelector('.cancel');
+    let inputEditTask = document.querySelector('#story');
+    butEdit.addEventListener('click', function () {
+        editBlock.style.display = 'block';
+        inputEditTask.value = this.parentElement.parentElement.innerText;
+        save.onclick = function(){
+            task.innerHTML = inputEditTask.value;
+            editBlock.style.display = 'none';
+        };
+        cancel.onclick = function(){
+            editBlock.style.display = 'none';
+        };
+    })
+}
 
- function doneItem(butDone,li) {
-         butDone.addEventListener('click', function () {
-             if (li.className === 'li') {
-                 doneUl.appendChild(li);
-                 li.className = 'edit';
-             } else {
-                 ul.appendChild(li);
-                 li.className = 'li';
-             }
-         });
- }
+function doneItem(butDone,li) {
+    butDone.addEventListener('click', function () {
+        if (li.className === 'li') {
+            doneUl.appendChild(li);
+            li.className = 'edit';
+        } else {
+            ul.appendChild(li);
+            li.className = 'li';
+        }
+    });
+}
 
+// filter.onclick = function () {
+//     filter.value = '';
+//     filters()
+// };
+
+
+// function filters() {
+//     let text = search.value.toLocaleLowerCase();
+//     document.querySelectorAll('.card-collection').forEach
+//     (function (task) {
+//         let item = task.childNodes[0].childNodes[0].childNodes[0].textContent;
+//         if(item.toLowerCase().indexOf(text) !== -1){
+//             task.style.display = 'block';
+//         } else {
+//             task.style.display = 'none';
+//         }
+//     });
+// }
 
 
 
