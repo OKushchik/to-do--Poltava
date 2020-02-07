@@ -1,0 +1,53 @@
+ul {
+    list-style: none;
+}
+#task {
+    display: inline-block;
+
+
+    height: 20px;
+    border: 1px solid black;
+}
+#icon {
+    display: inline-block;
+}
+.taskFullRow {
+
+}
+.task{
+    display: inline;
+    margin-top: 10px;
+    background: grey;
+    width: 200px;
+}
+.editTask {
+    width: 195px;
+}
+.delBlock {
+    display: none;
+    position: absolute;
+    top: 30%;
+    left: 40%;
+    text-align: center;
+    width: 300px;
+    height: 100px;
+    border: 2px solid #8359ff;
+    background: #87838b;
+}
+.buttonNav {
+    display: inline;
+}
+label {
+    display: block;
+}
+.editBlock {
+    display: none;
+    position: absolute;
+    top: 30%;
+    left: 40%;
+    text-align: center;
+    width: 300px;
+    height: 200px;
+    border: 2px solid #8359ff;
+    background: #87838b;
+}
