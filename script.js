@@ -10,6 +10,7 @@ let filter = document.querySelector('#filter');
 
 inputTask.onclick = function () {
     inputTask.value = '';
+
 };
 
 
@@ -54,7 +55,13 @@ function createElement() {
     doneItem (butDone,li);
 
     inputTask.value = '';
+    filter.onclick = function () {
+        filter.value = '';
 
+    };
+    filter.onkeyup = function () {
+        filters(task);
+    };
 }
 
 function delItem(li,butDel) {
@@ -70,6 +77,7 @@ function delItem(li,butDel) {
             delBlock.style.display = 'none';
         };
     })
+
 }
 
 function editItem(butEdit,task) {
@@ -101,24 +109,23 @@ function doneItem(butDone,li) {
     });
 }
 
-// filter.onclick = function () {
-//     filter.value = '';
-//     filters()
-// };
 
 
-// function filters() {
-//     let text = search.value.toLocaleLowerCase();
-//     document.querySelectorAll('.card-collection').forEach
-//     (function (task) {
-//         let item = task.childNodes[0].childNodes[0].childNodes[0].textContent;
-//         if(item.toLowerCase().indexOf(text) !== -1){
-//             task.style.display = 'block';
-//         } else {
-//             task.style.display = 'none';
-//         }
-//     });
-// }
+
+function filters(task) {
+    let text = filter.value.toLocaleLowerCase();
+    console.log(task.parentElement);
+    document.querySelectorAll('li').forEach
+    (function (task) {
+        let item = task.textContent;
+        console.log(item.indexOf(text));
+        if(item.toLowerCase().indexOf(text) !== -1){
+            task.style.display = 'block';
+        } else {
+            task.style.display = 'none';
+        }
+    });
+}
 
 
 
