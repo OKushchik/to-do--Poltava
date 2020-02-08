@@ -61,8 +61,6 @@ inputTask.onclick = function () {
 buttonAdd.onclick = function () {
     if(inputTask.value !== ''){
         createElement();
-
-
     }
 };
 
@@ -78,25 +76,19 @@ function createElement() {
     doneItem (butDone,li);
 
     inputTask.value = '';
-    filter.onclick = function () {
-        filter.value = '';
-
-    };
-    filter.onkeyup = function () {
-        filters(task);
-    };
-
-
 
     arr.push(task.textContent);
 localStorage.setItem('items', JSON.stringify(arr));
 
 }
 
-console.log(document.querySelectorAll('li'));
+filter.onclick= function () {
+    filter.value = '';
 
-
-
+};
+filter.onkeyup = function () {
+    filters(task);
+};
 
 ////////////////////////////////////////////////////////////
 function delItem(li,butDel) {
