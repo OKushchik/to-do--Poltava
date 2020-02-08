@@ -68,3 +68,6 @@ label {
     border: 2px solid #8359ff;
     background: #87838b;
 }
+.edit .task {
+    background: #a2f8ff;
+}
