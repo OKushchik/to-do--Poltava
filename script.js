@@ -146,8 +146,9 @@ function editItem(butEdit,task) {
 
 function doneItem(butDone,li) {
     butDone.addEventListener('click', function () {
-        if (li.className === 'li') {
-            doneUl.appendChild(li);
+
+        if (this.parentElement.parentElement.className === 'li' ) {
+            doneUl.appendChild(this.parentElement.parentElement);
             li.className = 'edit';
 
             arr = [];
@@ -163,8 +164,21 @@ function doneItem(butDone,li) {
             localStorage.setItem('itemsDone', JSON.stringify(arrDone));
 
         } else {
-            ul.appendChild(li);
-            li.className = 'li';
+            ul.appendChild(this.parentElement.parentElement);
+            this.parentElement.parentElement.className = 'li';
+
+            arr = [];
+            for (let i = 0; i<document.querySelectorAll('.li').length; i++) {
+                arr.push(document.querySelectorAll('.li')[i].innerText);
+            }
+            localStorage.setItem('items', JSON.stringify(arr));
+
+            arrDone = [];
+            for (let i = 0; i<document.querySelectorAll('.edit').length; i++) {
+                arrDone.push(document.querySelectorAll('.edit')[i].innerText);
+            }
+            localStorage.setItem('itemsDone', JSON.stringify(arrDone));
+
         }
     });
 }
@@ -205,7 +219,7 @@ for (let i = 0; i<arrDone.length; i++) {
     doneUl.appendChild(liEdit);///////////
     liEdit.appendChild(task);///////////
     liEdit.appendChild(buttonNav);///////////
-
+console.log(arrDone);
     task.textContent = arrDone[i];
 
     delItem (li,butDel);
