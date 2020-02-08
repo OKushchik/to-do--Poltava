@@ -1,42 +1,24 @@
-* {
-    text-align: center;
-}
-body {
-    margin-top: 10%;
-    width: 100%;
-}
-.toDoBlock {
-    width: 50%;
-    margin: 0 auto;
-}
 ul {
     list-style: none;
 }
+#task {
+    display: inline-block;
 
+
+    height: 20px;
+    border: 1px solid black;
+}
 #icon {
     display: inline-block;
 }
-#inputTask {
-    border: none;
-    border-bottom: 2px solid black ;
-    width: 50%;
-}
+.taskFullRow {
 
+}
 .task{
-    word-wrap: break-word;
-    display: inline-block;
+    display: inline;
     margin-top: 10px;
-    background: #bec2b0;
-    width: 50%;
-    height: auto;
-    border: 1px solid plum;
-}
-.task p {
-    display: block;
-    width: 100%;
-}
-.filterClass {
-    margin-top: 30px;
+    background: grey;
+    width: 200px;
 }
 .editTask {
     width: 195px;
