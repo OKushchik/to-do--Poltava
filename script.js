@@ -55,8 +55,6 @@ buttonAdd.onclick = function () {
         createElement();
     }
 };
-
-
 function createElement() {
 
     createBlock();
@@ -75,7 +73,7 @@ function createElement() {
     inputTask.value = '';
 
     arr.push(task.textContent);
-localStorage.setItem('items', JSON.stringify(arr));
+    localStorage.setItem('items', JSON.stringify(arr));
 }
 filter.onclick= function () {
     filter.value = '';
@@ -219,7 +217,7 @@ for (let i = 0; i<arrDone.length; i++) {
     doneUl.appendChild(liEdit);///////////
     liEdit.appendChild(task);///////////
     liEdit.appendChild(buttonNav);///////////
-console.log(arrDone);
+    console.log(arrDone);
     task.textContent = arrDone[i];
 
     delItem (li,butDel);
