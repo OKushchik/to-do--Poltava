@@ -21,7 +21,6 @@ ul {
     border-bottom: 2px solid black ;
     width: 50%;
 }
-
 .task{
     word-wrap: break-word;
     display: inline-block;
