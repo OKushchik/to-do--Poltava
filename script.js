@@ -13,23 +13,18 @@ let butEdit;
 let butDel;
 
 function createBlock () {
-    li = document.createElement('li');
     task = document.createElement('div');
     buttonNav = document.createElement('div');
     butDone = document.createElement('button');
     butEdit = document.createElement('button');
     butDel = document.createElement('button');
 
-    li.className = 'li';
     task.className = 'task';
     buttonNav.className = 'buttonNav';
     butDone.className = 'butSave';
     butEdit.className = 'butEdit';
     butDel.className = 'butDel';
 
-    ul.appendChild(li);
-    li.appendChild(task);
-    li.appendChild(buttonNav);
     buttonNav.appendChild(butDone);
     buttonNav.appendChild(butEdit);
     buttonNav.appendChild(butDel);
@@ -39,21 +34,18 @@ function createBlock () {
     butDel.innerHTML = '<i class="fas fa-trash"></i>';
 
 }
-/////////////////////
+
 let arr = [];
 
 if(localStorage.getItem('items')!== null) {
     arr = JSON.parse(localStorage.getItem('items'))
 }
-
-for (let i = 0; i<arr.length; i++) {
-    createBlock ();
-    task.textContent = arr[i];
-    delItem (li,butDel);
-    editItem (butEdit,task);
-    doneItem (butDone,li);
+//////////////////////
+let arrDone = [];
+if(localStorage.getItem('itemsDone')!== null) {
+    arrDone = JSON.parse(localStorage.getItem('itemsDone'))
 }
-//////////////////////////////////////////////
+
 inputTask.onclick = function () {
     inputTask.value = '';
 };
@@ -68,6 +60,11 @@ buttonAdd.onclick = function () {
 function createElement() {
 
     createBlock();
+    li = document.createElement('li'); ///////////
+    li.className = 'li'; ///////////
+    ul.appendChild(li);///////////
+    li.appendChild(task);///////////
+    li.appendChild(buttonNav);///////////
 
     task.textContent = inputTask.value;
 
@@ -79,9 +76,7 @@ function createElement() {
 
     arr.push(task.textContent);
 localStorage.setItem('items', JSON.stringify(arr));
-
 }
-
 filter.onclick= function () {
     filter.value = '';
 
@@ -90,14 +85,27 @@ filter.onkeyup = function () {
     filters(task);
 };
 
-////////////////////////////////////////////////////////////
 function delItem(li,butDel) {
     butDel.addEventListener('click', function () {
         let yes = document.querySelector('.yes');
         let no = document.querySelector('.no');
         delBlock.style.display = 'block';
+        let thisEl = this.parentElement.parentElement;
         yes.onclick = function(){
-            li.remove();
+            thisEl.remove();
+            arr = [];
+            for (let i = 0; i<document.querySelectorAll('.li').length; i++) {
+                arr.push(document.querySelectorAll('.li')[i].innerText);
+            }
+            arrDone = [];
+            for (let i = 0; i<document.querySelectorAll('.edit').length; i++) {
+                arrDone.push(document.querySelectorAll('.edit')[i].innerText);
+            }
+
+            localStorage.setItem('items', JSON.stringify(arr));
+            localStorage.setItem('itemsDone', JSON.stringify(arrDone));
+
+
             delBlock.style.display = 'none';
         };
         no.onclick = function(){
@@ -115,15 +123,20 @@ function editItem(butEdit,task) {
         editBlock.style.display = 'block';
         inputEditTask.value = this.parentElement.parentElement.innerText;
         save.onclick = function(){
-
             task.textContent = inputEditTask.value;
-            localStorage.setItem('items', JSON.stringify(arr));
-            editBlock.style.display = 'none';
             arr = [];
-            for (let i = 0; i<document.querySelectorAll('li').length; i++) {
-                arr.push(document.querySelectorAll('li')[i].innerText);
+            for (let i = 0; i<document.querySelectorAll('.li').length; i++) {
+                arr.push(document.querySelectorAll('.li')[i].innerText);
             }
+            arrDone = [];
+            for (let i = 0; i<document.querySelectorAll('.edit').length; i++) {
+                arrDone.push(document.querySelectorAll('.edit')[i].innerText);
+            }
+
             localStorage.setItem('items', JSON.stringify(arr));
+            localStorage.setItem('itemsDone', JSON.stringify(arrDone));
+
+            editBlock.style.display = 'none';
         };
         cancel.onclick = function(){
             editBlock.style.display = 'none';
@@ -136,6 +149,19 @@ function doneItem(butDone,li) {
         if (li.className === 'li') {
             doneUl.appendChild(li);
             li.className = 'edit';
+
+            arr = [];
+            for (let i = 0; i<document.querySelectorAll('.li').length; i++) {
+                arr.push(document.querySelectorAll('.li')[i].innerText);
+            }
+            localStorage.setItem('items', JSON.stringify(arr));
+
+            arrDone = [];
+            for (let i = 0; i<document.querySelectorAll('.edit').length; i++) {
+                arrDone.push(document.querySelectorAll('.edit')[i].innerText);
+            }
+            localStorage.setItem('itemsDone', JSON.stringify(arrDone));
+
         } else {
             ul.appendChild(li);
             li.className = 'li';
@@ -158,9 +184,33 @@ function filters(task) {
     });
 }
 
+for (let i = 0; i<arr.length; i++) {
+    createBlock ();
+    li = document.createElement('li'); ///////////
+    li.className = 'li'; ///////////
+    ul.appendChild(li);///////////
+    li.appendChild(task);///////////
+    li.appendChild(buttonNav);///////////
 
+    task.textContent = arr[i];
+    delItem (li,butDel);
+    editItem (butEdit,task);
+    doneItem (butDone,li);
+}
 
+for (let i = 0; i<arrDone.length; i++) {
+    createBlock ();
+    liEdit = document.createElement('li'); ///////////
+    liEdit.className = 'edit'; ///////////
+    doneUl.appendChild(liEdit);///////////
+    liEdit.appendChild(task);///////////
+    liEdit.appendChild(buttonNav);///////////
 
+    task.textContent = arrDone[i];
 
+    delItem (li,butDel);
+    editItem (butEdit,task);
+    doneItem (butDone,li);
+}
 
 
