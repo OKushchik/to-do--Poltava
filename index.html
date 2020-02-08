@@ -7,56 +7,38 @@
     <link rel="stylesheet" href="https://use.fontawesome.com/releases/v5.5.0/css/all.css" integrity="sha384-B4dIYHKNBt8Bc12p+WXckhzcICo0wtJAoU8YZTY5qE0Id1GSseTk6S+L3BlXeVIU" crossorigin="anonymous">
 </head>
 <body>
+<h1>TO DO LIST</h1>
+<label>
+    <input type="text" name="inputTask" id="inputTask"  value="Task">
+    <button id="buttonAdd">ADD</button>
+</label>
+<div id="taskBlock">
+    <ul>
 
-<div class="toDoBlock">
-    <h1>TO DO LIST</h1>
+    </ul>
 
-    <div class="textClass">
-        <label>
-            <input type="text" name="inputTask" id="inputTask"  value="Task">
-            <button id="buttonAdd">ADD</button>
-        </label>
-    </div>
+    <h2>Done Element</h2>
+    <ul class="doneUl">
 
-    <div class="filterClass">
-        <label>
-            <input type="text" name="filter" id="filter"  value="filter">
-            <button id="filterButton">Filter</button>
-        </label>
-    </div>
-    <hr>
-
-
-    <div id="taskBlock">
-        <ul>
-
-        </ul>
-
-        <h2>Done Element</h2>
-        <ul class="doneUl">
-
-        </ul>
-
-    </div>
-
-    <div class="delBlock">
-        <h3> Delete Item ? </h3>
-        <button class="yes">YES</button>
-        <button class="no">NO</button>
-    </div>
-
-    <div class="editBlock">
-        <h3> Edit Text </h3>
-        <label>
-        <textarea id="story" name="story" rows="5" cols="33">
-        </textarea>
-        </label>
-        <button class="save">SAVE</button>
-        <button class="cancel">CANCEL</button>
-    </div>
+    </ul>
 
 </div>
 
+<div class="delBlock">
+    <h3> Delete Item ? </h3>
+    <button class="yes">YES</button>
+    <button class="no">NO</button>
+</div>
+
+<div class="editBlock">
+    <h3> Edit Text </h3>
+    <label>
+        <textarea id="story" name="story" rows="5" cols="33">
+        </textarea>
+    </label>
+    <button class="save">SAVE</button>
+    <button class="cancel">CANCEL</button>
+</div>
 
 
 <script src="script.js"></script>
